@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: django-be
+    runtime: python
+    plan: free
+    region: frankfurt
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+    preDeployCommand: |
+      python manage.py migrate --noinput
+    startCommand: gunicorn backend.wsgi:application
+    healthCheckPath: /api/
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: be-postgres
+          property: connectionString
+      # OPTIONAL: pin Python if you want
+      # - key: PYTHON_VERSION
+      #   value: "3.11.9"
+
+databases:
+  - name: be-postgres
+    plan: free
