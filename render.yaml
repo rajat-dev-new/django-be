@@ -13,6 +13,8 @@ services:
     healthCheckPath: /api/
     autoDeploy: true
     envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG
@@ -21,9 +23,6 @@ services:
         fromDatabase:
           name: be-postgres
           property: connectionString
-      # OPTIONAL: pin Python if you want
-      # - key: PYTHON_VERSION
-      #   value: "3.11.9"
 
 databases:
   - name: be-postgres
