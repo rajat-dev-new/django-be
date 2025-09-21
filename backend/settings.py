@@ -94,6 +94,7 @@ DATABASES = {
         ssl_require=True,  # important on Render
     )
 }
+DATABASES["default"]["OPTIONS"] = {"sslmode": "require"}
 
 
 # Password validation
