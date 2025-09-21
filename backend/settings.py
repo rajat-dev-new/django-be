@@ -42,16 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
+
 
 
 MIDDLEWARE = [
@@ -66,8 +57,9 @@ MIDDLEWARE = [
 ]
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = True
-# For production, use CORS_ALLOWED_ORIGINS = ['http://localhost:4200']
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = ["https://rajatcicd.netlify.app"]
+CSRF_TRUSTED_ORIGINS = ["https://*.onrender.com", "https://rajatcicd.netlify.app"]
 
 ROOT_URLCONF = 'backend.urls'
 
